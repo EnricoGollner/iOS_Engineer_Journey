@@ -1,2 +1,2 @@
 # iOS_Engineer_Journey
-Becoming an iOS Engineer
+My journey to become an iOS Engineer
