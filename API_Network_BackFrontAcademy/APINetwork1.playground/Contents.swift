@@ -36,6 +36,8 @@ struct Person: Codable {
     }
 }
 
+
+// Decodificando JSON em objeto Swift:
 let jsonString = """
 {
     "name_App": "Enrico",
@@ -53,9 +55,31 @@ let jsonDecoder = JSONDecoder()
 if let jsonData = jsonString.data(using: .utf8) {
     do {
         let person: Person = try jsonDecoder.decode(Person.self, from: jsonData)
-        print("Decodificado:")
-        print("Nome: \(person.name!)")
+        
+        print("Deu certo! Objeto com informações de \(person.name ?? "") decodificado!")
     } catch {
-        print("Erro ao decodificar o JSON: \(error)")
+        print("Erro ao decodificar JSON \(error)")
     }
+}
+
+// Codificando um Objeto Swift para JSON
+
+let people: [Person] = [
+    Person(name: "Enrico", lastName: "Gollner", age: 19, list: [""]),
+    Person(name: "Cacau", lastName: "Sonsini", age: 19, list: [""]),
+]
+
+let jsonEncoder: JSONEncoder = JSONEncoder()
+jsonEncoder.outputFormatting = .prettyPrinted
+
+do {
+    let jsonData = try jsonEncoder.encode(people)  // Codifica da forma descrita no enum que conforma com String e CodingKey
+    
+    if let jsonString = String(data: jsonData, encoding: .utf8) {
+        print("JSON codificado:")
+        print(jsonString)
+    }
+    
+} catch {
+    print("Erro ao codificar em JSON: \(error)")
 }
