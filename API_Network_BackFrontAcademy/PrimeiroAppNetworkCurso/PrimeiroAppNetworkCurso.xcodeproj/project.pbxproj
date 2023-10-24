@@ -19,6 +19,7 @@
 		02DC38A12AE7367D00E95323 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC38A02AE7367D00E95323 /* HomeService.swift */; };
 		02DC38A32AE740E300E95323 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC38A22AE740E300E95323 /* Person.swift */; };
 		02DC38A52AE7413000E95323 /* PeopleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC38A42AE7413000E95323 /* PeopleList.swift */; };
+		02DC38A82AE7493600E95323 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC38A72AE7493600E95323 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		02DC38A02AE7367D00E95323 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		02DC38A22AE740E300E95323 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		02DC38A42AE7413000E95323 /* PeopleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleList.swift; sourceTree = "<group>"; };
+		02DC38A72AE7493600E95323 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		02DC38682AE7346D00E95323 /* PrimeiroAppNetworkCurso */ = {
 			isa = PBXGroup;
 			children = (
+				02DC38A62AE7492600E95323 /* Util */,
 				02DC389C2AE7361C00E95323 /* Model */,
 				02DC38992AE735F400E95323 /* Home */,
 				02DC38692AE7346D00E95323 /* AppDelegate.swift */,
@@ -166,6 +169,14 @@
 				02DC38A42AE7413000E95323 /* PeopleList.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		02DC38A62AE7492600E95323 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				02DC38A72AE7493600E95323 /* NetworkError.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DC38A82AE7493600E95323 /* NetworkError.swift in Sources */,
 				02DC38A32AE740E300E95323 /* Person.swift in Sources */,
 				02DC386E2AE7346D00E95323 /* HomeViewController.swift in Sources */,
 				02DC38A52AE7413000E95323 /* PeopleList.swift in Sources */,

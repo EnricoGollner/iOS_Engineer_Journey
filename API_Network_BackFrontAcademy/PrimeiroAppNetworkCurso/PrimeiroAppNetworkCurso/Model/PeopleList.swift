@@ -10,7 +10,7 @@ import Foundation
 struct PeopleList: Codable {
     var people: [Person]
     
-    enum PersonList: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case people = "pessoas"  // in API, the key is "pessoas"
     }
 }

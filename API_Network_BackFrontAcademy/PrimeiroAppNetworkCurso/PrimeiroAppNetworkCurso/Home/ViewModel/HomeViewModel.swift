@@ -12,6 +12,13 @@ class HomeViewModel: NSObject {
     var service: HomeService = HomeService()
     
     public func fetchRequest() {
-        service.getPersonList(completion: <#T##(Result<PeopleList, NetworkError>) -> Void#>)
+        service.getPersonList { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure.errorDescription ?? "")
+            }
+        }
     }
 }
