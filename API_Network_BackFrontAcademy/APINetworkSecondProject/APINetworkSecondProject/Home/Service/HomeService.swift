@@ -18,22 +18,24 @@ class HomeService {
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error {
-                completion(.failure(.networkFailure(error)))
-                return
-            }
-            
-            guard let data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let peopleList: People = try JSONDecoder().decode(People.self, from: data)
-                completion(.success(peopleList))
-                print("SUCCESS -> \(peopleList)")
-            } catch {
-                completion(.failure(.decodingError(error)))
+            DispatchQueue.main.async {
+                if let error {
+                    completion(.failure(.networkFailure(error)))
+                    return
+                }
+                
+                guard let data else {
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                do {
+                    let peopleList: People = try JSONDecoder().decode(People.self, from: data)
+                    completion(.success(peopleList))
+                    print("SUCCESS -> \(peopleList)")
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
             }
         }
         task.resume()

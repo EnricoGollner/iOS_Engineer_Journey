@@ -40,15 +40,14 @@ extension HomeViewController: HomeViewModelProtocol {
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as? PersonTableViewCell
-        cell?.setUpPersonCell(data: viewModel.loadCurrentPerson(indexPath: indexPath))
-        return cell ?? UITableViewCell()
+        let personCell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as? PersonTableViewCell
+        personCell?.setUpPersonCell(data: viewModel.loadCurrentPerson(indexPath: indexPath))
+        return personCell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

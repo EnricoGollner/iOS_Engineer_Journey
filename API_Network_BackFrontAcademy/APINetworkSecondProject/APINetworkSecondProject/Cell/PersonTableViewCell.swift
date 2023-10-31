@@ -44,6 +44,6 @@ class PersonTableViewCell: UITableViewCell {
     public func setUpPersonCell(data: Person) {
         screen.nameLabel.text = "Nome: \(data.name)"
         screen.surnameLabel.text = "Sobrenome: \(data.lastName)"
-        screen.phoneLabel.text = "Telefone: \(data.age)"
+        screen.phoneLabel.text = "Idade: \(data.age)"
     }
 }
