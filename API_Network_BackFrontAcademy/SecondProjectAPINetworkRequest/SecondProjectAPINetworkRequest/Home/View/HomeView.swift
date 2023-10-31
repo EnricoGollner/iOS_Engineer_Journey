@@ -1,35 +1,13 @@
 //
 //  HomeView.swift
-//  APINetworkSecondProject
+//  SecondProjectAPINetworkRequest
 //
-//  Created by Enrico Sousa Gollner on 28/10/23.
+//  Created by Enrico Sousa Gollner on 30/10/23.
 //
 
 import UIKit
 
-protocol HomeViewDelegate {
-    func getPeople()
-}
-
-class HomeView: UIView {
-    private var delegate: HomeViewDelegate?
-    
-    public func delegate(delegate: HomeViewDelegate) {
-        self.delegate = delegate
-    }
-    
-    //MARK: - Elements
-    lazy var requestButton: UIButton = {
-        let reqBt = UIButton()
-        reqBt.translatesAutoresizingMaskIntoConstraints = false
-        reqBt.setTitle("Request", for: .normal)
-        reqBt.setTitleColor(.blue, for: .normal)
-        reqBt.backgroundColor = .red
-        reqBt.layer.cornerRadius = 10
-        reqBt.addTarget(self, action: #selector(fetchRequest), for: .touchUpInside)
-        
-        return reqBt
-    }()
+class HomeScreen: UIView {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -66,10 +44,4 @@ class HomeView: UIView {
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
-    //MARK: - Functionalities
-    @objc func fetchRequest() {
-        delegate?.getPeople()
-    }
-    
 }

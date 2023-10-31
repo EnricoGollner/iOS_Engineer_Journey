@@ -1,18 +1,19 @@
 //
-//  HomeViewController.swift
-//  APINetworkSecondProject
+//  ViewController.swift
+//  SecondProjectAPINetworkRequest
 //
-//  Created by Enrico Sousa Gollner on 28/10/23.
+//  Created by Enrico Sousa Gollner on 30/10/23.
 //
+
 import UIKit
 
 class HomeViewController: UIViewController {
     
-    var screen: HomeView?
+    var screen: HomeScreen?
     private let viewModel: HomeViewModel = HomeViewModel()
     
     override func loadView() {
-        self.screen = HomeView()
+        self.screen = HomeScreen()
         self.view = screen
     }
     
@@ -36,7 +37,6 @@ extension HomeViewController: HomeViewModelProtocol {
         screen?.configTableViewProtocols(delegate: self, dataSource: self)
         screen?.tableView.reloadData()
     }
-    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -47,7 +47,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as? PersonTableViewCell
-        cell?.setUpPersonCell(data: viewModel.loadCurrentPerson(indexPath: indexPath))
+        cell?.setupHomeCell(data: viewModel.loadCurrentPerson(indexPath: indexPath))
         return cell ?? UITableViewCell()
     }
     

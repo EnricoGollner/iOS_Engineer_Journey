@@ -1,34 +1,33 @@
 //
 //  HomeViewModel.swift
-//  APINetworkSecondProject
+//  SecondProjectAPINetworkRequest
 //
-//  Created by Enrico Sousa Gollner on 28/10/23.
+//  Created by Enrico Sousa Gollner on 30/10/23.
 //
 
-import UIKit
+import Foundation
 
 protocol HomeViewModelProtocol: AnyObject {
     func success()
     func error(message: String)
 }
 
-class HomeViewModel {
+class HomeViewModel: NSObject {
+    
+    private var service: HomeService = HomeService()
+    private var personList: [Person] = []
     private weak var delegate: HomeViewModelProtocol?
     
-    public func delegate(delegate: HomeViewModelProtocol) {
+    public func delegate(delegate: HomeViewModelProtocol?) {
         self.delegate = delegate
     }
-    
-    private let service = HomeService()
-    private var peopleList: [Person] = []
     
     public func fetchRequest() {
         service.getPeople { [weak self] result in
             guard let self else { return }
-            
             switch result {
             case .success(let success):
-                peopleList = success.people
+                personList = success.people
                 delegate?.success()
             case .failure(let failure):
                 delegate?.error(message: failure.errorDescription ?? "")
@@ -37,11 +36,11 @@ class HomeViewModel {
     }
     
     public var numberOfRowsInSection: Int {
-        return peopleList.count
+        return personList.count
     }
     
     func loadCurrentPerson(indexPath: IndexPath) -> Person {
-        return peopleList[indexPath.row]
+        return personList[indexPath.row]
     }
-}
 
+}
