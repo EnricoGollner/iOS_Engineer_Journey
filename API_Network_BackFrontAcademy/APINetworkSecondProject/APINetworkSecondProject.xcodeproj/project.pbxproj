@@ -23,6 +23,7 @@
 		0263AA2D2AF09650009AE101 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263AA262AF09650009AE101 /* HomeView.swift */; };
 		0263AA322AF0965F009AE101 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263AA2F2AF0965F009AE101 /* PersonTableViewCell.swift */; };
 		0263AA332AF0965F009AE101 /* PersonTableViewCellScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263AA312AF0965F009AE101 /* PersonTableViewCellScreen.swift */; };
+		0263AA362AF09EC7009AE101 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263AA352AF09EC7009AE101 /* ServiceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		0263AA262AF09650009AE101 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0263AA2F2AF0965F009AE101 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		0263AA312AF0965F009AE101 /* PersonTableViewCellScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCellScreen.swift; sourceTree = "<group>"; };
+		0263AA352AF09EC7009AE101 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		0251D6EB2AED5CB300AF52DE /* APINetworkSecondProject */ = {
 			isa = PBXGroup;
 			children = (
+				0263AA342AF09EBB009AE101 /* Service */,
 				0251D72C2AED630800AF52DE /* Util */,
 				0263AA2E2AF0965F009AE101 /* Cell */,
 				0263AA1A2AF09650009AE101 /* Home */,
@@ -210,6 +213,14 @@
 				0263AA312AF0965F009AE101 /* PersonTableViewCellScreen.swift */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		0263AA342AF09EBB009AE101 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0263AA352AF09EC7009AE101 /* ServiceManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +364,7 @@
 				0251D72B2AED62D300AF52DE /* HomeService.swift in Sources */,
 				0263AA2B2AF09650009AE101 /* Person.swift in Sources */,
 				0263AA282AF09650009AE101 /* HomeViewController.swift in Sources */,
+				0263AA362AF09EC7009AE101 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

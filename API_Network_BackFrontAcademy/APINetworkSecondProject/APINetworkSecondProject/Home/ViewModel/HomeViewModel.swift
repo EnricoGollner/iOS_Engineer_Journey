@@ -28,7 +28,7 @@ class HomeViewModel {
             
             switch result {
             case .success(let success):
-                peopleList = success.people
+                peopleList = success
                 delegate?.success()
             case .failure(let failure):
                 delegate?.error(message: failure.errorDescription ?? "")

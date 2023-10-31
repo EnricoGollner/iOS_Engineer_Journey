@@ -9,35 +9,18 @@ import Foundation
 
 class HomeService {
     
-    func getPeople(completion: @escaping (Result<People, NetworkError>) -> Void) {
-        let url = "https://run.mocky.io/v3/4707d91f-e2fa-4ebc-ab4f-b0763ff80305"
+    
+    func getPeople(completion: @escaping (Result<[Person], NetworkError>) -> Void) {
+        let urlString = "https://run.mocky.io/v3/4707d91f-e2fa-4ebc-ab4f-b0763ff80305"
         
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidUrl(url: url)))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                if let error {
-                    completion(.failure(.networkFailure(error)))
-                    return
-                }
-                
-                guard let data else {
-                    completion(.failure(.noData))
-                    return
-                }
-                
-                do {
-                    let peopleList: People = try JSONDecoder().decode(People.self, from: data)
-                    completion(.success(peopleList))
-                    print("SUCCESS -> \(peopleList)")
-                } catch {
-                    completion(.failure(.decodingError(error)))
-                }
+        ServiceManager.shared.request(with: urlString, method: .get, decodeType: People.self) { result in
+            switch (result) {
+            case .success(let success):
+                completion(.success(success.people))
+            case .failure(let error):
+                completion(.failure(.decodingError(error)))
             }
         }
-        task.resume()
+        
     }
 }
