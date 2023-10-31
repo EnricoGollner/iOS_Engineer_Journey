@@ -8,8 +8,6 @@
 import Foundation
 
 class HomeService {
-    
-    
     func getPeople(completion: @escaping (Result<[Person], NetworkError>) -> Void) {
         let urlString = "https://run.mocky.io/v3/4707d91f-e2fa-4ebc-ab4f-b0763ff80305"
         
