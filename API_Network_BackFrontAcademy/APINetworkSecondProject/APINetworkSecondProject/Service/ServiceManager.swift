@@ -7,27 +7,25 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
-
-protocol NetworkLayer {
-    var session: URLSession { get }
-    func request<T: Decodable>(with urlString: String, method: HTTPMethod, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void)
-}
-
-
-
 class ServiceManager: NetworkLayer {
     
-    static var shared: ServiceManager = ServiceManager()  // Singleton
+    static var shared: ServiceManager = ServiceManager()  // Singlaton
+    
+    private var baseURL: String
+    
+    init(baseURL: String? = nil) {
+        if let baseURL {
+            self.baseURL = baseURL
+        } else if let baseURLString = Bundle.main.infoDictionary?["BaseURL"] as? String {
+            self.baseURL = baseURLString
+        } else {
+            self.baseURL = ""
+        }
+    }
     
     var session: URLSession = URLSession.shared
     
-    func request<T>(with urlString: String, method: HTTPMethod = .get, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
+    func request<T>(with urlString: String, method: HTTPMethod = .get, decodedType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
         guard let url: URL = URL(string: urlString) else {
             completion(.failure(.invalidUrl(url: urlString)))
             return
@@ -36,7 +34,7 @@ class ServiceManager: NetworkLayer {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
-        let task = session.dataTask(with: url) { data, response, error in
+        let task = session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error {
                     completion(.failure(.networkFailure(error)))
@@ -65,6 +63,7 @@ class ServiceManager: NetworkLayer {
         }
         
         task.resume()
-        
     }
+    
+    
 }
