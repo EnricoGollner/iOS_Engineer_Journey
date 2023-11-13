@@ -7,11 +7,12 @@
 
 import Foundation
 
-class ServiceManager {
+class ServiceManager: NetworkLayer {
     static var shared: ServiceManager = ServiceManager()  // Singlaton
     
     private var baseURL: String
     private var requestBuilder: RequestBuilder
+    private var session: URLSession = URLSession.shared
     
     init(baseURL: String? = nil, requestBuilder: RequestBuilder = DefaultRequestBuilder()) {
         if let baseURL {
@@ -24,54 +25,8 @@ class ServiceManager {
         
         self.requestBuilder = requestBuilder
     }
-    
-    var session: URLSession = URLSession.shared
-    
-    
+        
     func request<T>(with endpoint: Endpoint, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
-        
-        let urlString = baseURL + endpoint.url
-        
-        guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidUrl(url: urlString)))
-            return
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = endpoint.httpMethod.rawValue
-        
-        let task = session.dataTask(with: urlRequest) { data, response, error in
-            DispatchQueue.main.async {
-                if let error {
-                    completion(.failure(.networkFailure(error)))
-                }
-                
-                guard let data else {
-                    completion(.failure(.noData))
-                    return
-                }
-                
-                guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
-                    completion(.failure(.invalidResponse))
-                    return
-                }
-                
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    
-                    let object: T = try decoder.decode(T.self, from: data)
-                    completion(.success(object))
-                } catch {
-                    completion(.failure(.decodingError(error)))
-                }
-            }
-        }
-        
-        task.resume()
-    }
-    
-    func request2<T>(with endpoint: Endpoint, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
         
         let urlString = baseURL + endpoint.url
         

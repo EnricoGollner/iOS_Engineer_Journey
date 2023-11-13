@@ -13,7 +13,7 @@ class HomeService {
         
         let endpoint = Endpoint(url: urlString, httpMethod: .get, headers: nil, parameters: nil)
         
-        ServiceManager.shared.request2(with: endpoint, decodeType: People.self) { result in
+        ServiceManager.shared.request(with: endpoint, decodeType: People.self) { result in
             switch(result) {
             case .success(let success):
                 completion(.success(success.people))
