@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NetworkLayer {
-    func request<T: Decodable>(with urlString: String, method: HTTPMethod, decodedType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void)
+    func request<T: Decodable>(with urlString: String, httpMethod: HTTPMethod, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void)
 }

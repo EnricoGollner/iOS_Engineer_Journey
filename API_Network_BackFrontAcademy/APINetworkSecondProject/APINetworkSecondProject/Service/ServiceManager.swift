@@ -7,38 +7,43 @@
 
 import Foundation
 
-class ServiceManager: NetworkLayer {
-    
+class ServiceManager {
     static var shared: ServiceManager = ServiceManager()  // Singlaton
     
     private var baseURL: String
+    private var requestBuilder: RequestBuilder
     
-    init(baseURL: String? = nil) {
+    init(baseURL: String? = nil, requestBuilder: RequestBuilder = DefaultRequestBuilder()) {
         if let baseURL {
             self.baseURL = baseURL
-        } else if let baseURLString = Bundle.main.infoDictionary?["BaseURL"] as? String {
+        } else if let baseURLString = Bundle.main.infoDictionary?["BaseURL"] as? String {  // Search in info.plist the value with the key "BaseURL"
             self.baseURL = baseURLString
         } else {
             self.baseURL = ""
         }
+        
+        self.requestBuilder = requestBuilder
     }
     
     var session: URLSession = URLSession.shared
     
-    func request<T>(with urlString: String, method: HTTPMethod = .get, decodedType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
-        guard let url: URL = URL(string: urlString) else {
+    
+    func request<T>(with endpoint: Endpoint, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
+        
+        let urlString = baseURL + endpoint.url
+        
+        guard let url = URL(string: urlString) else {
             completion(.failure(.invalidUrl(url: urlString)))
             return
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = endpoint.httpMethod.rawValue
         
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = session.dataTask(with: urlRequest) { data, response, error in
             DispatchQueue.main.async {
                 if let error {
                     completion(.failure(.networkFailure(error)))
-                    return
                 }
                 
                 guard let data else {
@@ -54,6 +59,49 @@ class ServiceManager: NetworkLayer {
                 do {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .iso8601
+                    
+                    let object: T = try decoder.decode(T.self, from: data)
+                    completion(.success(object))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func request2<T>(with endpoint: Endpoint, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
+        
+        let urlString = baseURL + endpoint.url
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidUrl(url: urlString)))
+            return
+        }
+        
+        let urlRequest = requestBuilder.buildRequest(with: endpoint, url: url)
+        
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            DispatchQueue.main.async {
+                if let error {
+                    completion(.failure(.networkFailure(error)))
+                }
+                
+                guard let data else {
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                    completion(.failure(.invalidResponse))
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    
                     let object: T = try decoder.decode(T.self, from: data)
                     completion(.success(object))
                 } catch {
