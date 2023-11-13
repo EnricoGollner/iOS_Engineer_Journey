@@ -12,9 +12,12 @@ class ServiceManager: NetworkLayer {
     
     private var baseURL: String
     private var requestBuilder: RequestBuilder
-    private var session: URLSession = URLSession.shared
+    private var session: URLSession
+    private var decoder: JSONDecoder
     
-    init(baseURL: String? = nil, requestBuilder: RequestBuilder = DefaultRequestBuilder()) {
+    init(session: URLSession = URLSession.shared, baseURL: String? = nil, requestBuilder: RequestBuilder = DefaultRequestBuilder(), decoder: JSONDecoder = JSONDecoder()) {
+        self.session = session
+        
         if let baseURL {
             self.baseURL = baseURL
         } else if let baseURLString = Bundle.main.infoDictionary?["BaseURL"] as? String {  // Search in info.plist the value with the key "BaseURL"
@@ -24,13 +27,15 @@ class ServiceManager: NetworkLayer {
         }
         
         self.requestBuilder = requestBuilder
+        self.decoder = decoder
     }
-        
+    
     func request<T>(with endpoint: Endpoint, decodeType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
         
         let urlString = baseURL + endpoint.url
         
         guard let url = URL(string: urlString) else {
+            NetworkLogger.logError(error: .invalidUrl(url: urlString))
             completion(.failure(.invalidUrl(url: urlString)))
             return
         }
@@ -38,6 +43,8 @@ class ServiceManager: NetworkLayer {
         let urlRequest = requestBuilder.buildRequest(with: endpoint, url: url)
         
         let task = session.dataTask(with: urlRequest) { data, response, error in
+            NetworkLogger.log(urlRequest: urlRequest, response: response, data: data, error: error)
+            
             DispatchQueue.main.async {
                 if let error {
                     completion(.failure(.networkFailure(error)))
@@ -54,10 +61,8 @@ class ServiceManager: NetworkLayer {
                 }
                 
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    
-                    let object: T = try decoder.decode(T.self, from: data)
+                    self.decoder.dateDecodingStrategy = .iso8601
+                    let object: T = try self.decoder.decode(T.self, from: data)
                     completion(.success(object))
                 } catch {
                     completion(.failure(.decodingError(error)))

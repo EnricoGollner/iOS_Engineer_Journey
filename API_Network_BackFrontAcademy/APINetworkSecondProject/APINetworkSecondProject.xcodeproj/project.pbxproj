@@ -29,6 +29,7 @@
 		02EB07C52B019F7500D9E165 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB07C42B019F7500D9E165 /* Endpoint.swift */; };
 		02EB07C82B01A92700D9E165 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB07C72B01A92700D9E165 /* RequestBuilder.swift */; };
 		02EB07CA2B01A97400D9E165 /* DefaultRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB07C92B01A97400D9E165 /* DefaultRequestBuilder.swift */; };
+		02EB07CD2B01B91800D9E165 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB07CC2B01B91800D9E165 /* NetworkLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		02EB07C42B019F7500D9E165 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		02EB07C72B01A92700D9E165 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		02EB07C92B01A97400D9E165 /* DefaultRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestBuilder.swift; sourceTree = "<group>"; };
+		02EB07CC2B01B91800D9E165 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,10 +225,9 @@
 				0251D72D2AED631B00AF52DE /* NetworkError.swift */,
 				0263AA352AF09EC7009AE101 /* ServiceManager.swift */,
 				027710132AF49F350052A32C /* HTTPMethod.swift */,
-				027710152AF49F750052A32C /* NetworkLayer.swift */,
 				02EB07C42B019F7500D9E165 /* Endpoint.swift */,
-				02EB07C72B01A92700D9E165 /* RequestBuilder.swift */,
 				02EB07C92B01A97400D9E165 /* DefaultRequestBuilder.swift */,
+				02EB07CC2B01B91800D9E165 /* NetworkLogger.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -234,6 +235,8 @@
 		02EB07CB2B01B0A000D9E165 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				027710152AF49F750052A32C /* NetworkLayer.swift */,
+				02EB07C72B01A92700D9E165 /* RequestBuilder.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				0251D72E2AED631B00AF52DE /* NetworkError.swift in Sources */,
 				02EB07C52B019F7500D9E165 /* Endpoint.swift in Sources */,
 				0263AA272AF09650009AE101 /* HomeViewModel.swift in Sources */,
+				02EB07CD2B01B91800D9E165 /* NetworkLogger.swift in Sources */,
 				0263AA332AF0965F009AE101 /* PersonTableViewCellScreen.swift in Sources */,
 				0263AA2C2AF09650009AE101 /* People.swift in Sources */,
 				0263AA2D2AF09650009AE101 /* HomeView.swift in Sources */,
