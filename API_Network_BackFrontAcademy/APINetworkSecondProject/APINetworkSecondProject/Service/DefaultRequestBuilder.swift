@@ -10,8 +10,6 @@ import Foundation
 /// Create the URLRequest we need to make the request (ALLOWS Headers and Parameters)
 class DefaultRequestBuilder: RequestBuilder {
     func buildRequest(with endpoint: Endpoint, url: URL) -> URLRequest {
-        
-        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = endpoint.headers
