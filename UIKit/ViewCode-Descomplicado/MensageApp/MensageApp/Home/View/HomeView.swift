@@ -15,17 +15,17 @@ class HomeView: UIView {
     }()
     
     lazy var collectionView: UICollectionView = {
-        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.showsVerticalScrollIndicator = false
-        collection.backgroundColor = .clear
-        collection.delaysContentTouches = false
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.delaysContentTouches = false
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
         
-        collection.setCollectionViewLayout(layout, animated: false)
-        return collection
+        collectionView.setCollectionViewLayout(layout, animated: false)
+        return collectionView
     }()
     
     private func delegateCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
@@ -49,7 +49,8 @@ class HomeView: UIView {
     private func setVisualElements() {
         self.addSubview(navView)
         self.addSubview(collectionView)
-        configConstraints()
+        
+        self.configConstraints()
     }
     
     private func configConstraints() {
@@ -57,7 +58,12 @@ class HomeView: UIView {
             self.navView.topAnchor.constraint(equalTo: self.topAnchor),
             self.navView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.navView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.heightAnchor.constraint(equalToConstant: 140),
+            self.navView.heightAnchor.constraint(equalToConstant: 140),
+            
+            self.collectionView.topAnchor.constraint(equalTo: self.navView.topAnchor),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
     

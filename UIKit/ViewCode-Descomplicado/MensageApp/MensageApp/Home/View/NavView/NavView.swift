@@ -17,7 +17,6 @@ protocol NavViewProtocol: AnyObject {
 }
 
 class NavView: UIView {
-    
     weak private var delegate: NavViewProtocol?
     
     public func delegate(delegate: NavViewProtocol) {
@@ -41,9 +40,7 @@ class NavView: UIView {
     lazy var navBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = CustomColor.appLight
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
+        view.backgroundColor = .clear
         
         return view
     }()
@@ -51,7 +48,9 @@ class NavView: UIView {
     lazy var searchBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
+        view.backgroundColor = CustomColor.appLight
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
         
         return view
     }()
@@ -87,7 +86,7 @@ class NavView: UIView {
     lazy var conversationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.setImage(UIImage(systemName: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .systemPink
         button.addTarget(self, action: #selector(self.tappedConversationButton), for: .touchUpInside)
         
@@ -143,9 +142,9 @@ class NavView: UIView {
     
     private func configConstraints() {
         NSLayoutConstraint.activate([
+            self.navBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
             self.navBackgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.navBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.navBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
             self.navBackgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             self.navBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -155,7 +154,7 @@ class NavView: UIView {
             
             self.searchBar.leadingAnchor.constraint(equalTo: self.navBar.leadingAnchor, constant: 30),
             self.searchBar.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
-            self.searchBar.trailingAnchor.constraint(equalTo: self.navBar.trailingAnchor, constant: -20),
+            self.searchBar.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -20),
             self.searchBar.heightAnchor.constraint(equalToConstant: 55),
             
             self.stackView.trailingAnchor.constraint(equalTo: self.navBar.trailingAnchor, constant: -30),

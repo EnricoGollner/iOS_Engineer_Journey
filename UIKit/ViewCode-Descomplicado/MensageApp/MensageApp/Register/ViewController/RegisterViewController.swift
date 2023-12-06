@@ -72,7 +72,10 @@ extension RegisterViewController: RegisterViewProtocol {
             }
             
             self.alert.getAlert(title: "Parabéns", message: "Registrado com sucesso!", completion: {
-                self.navigationController?.popViewController(animated: true)
+                let homeVC: HomeViewController = HomeViewController()
+                let navVC = UINavigationController(rootViewController: homeVC)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             })
         } failureHandler: { error in
             self.alert.getAlert(title: "Erro", message: error.localizedDescription)

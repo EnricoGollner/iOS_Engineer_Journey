@@ -53,9 +53,9 @@ extension LoginViewController: LoginViewProtocol {
         
         manager.login(email: email, password: password) { userModel in  // Success
             let homeVC: HomeViewController = HomeViewController()
-            homeVC.modalPresentationStyle = .fullScreen
-            self.present(homeVC, animated: true)
-            self.navigationController?.pushViewController(homeVC, animated: true)
+            let navVC = UINavigationController(rootViewController: homeVC)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         } failureHandler: { error in
             self.alert.getAlert(title: "Erro", message: error.localizedDescription)
         }
