@@ -113,7 +113,7 @@ class NavView: UIView {
     @objc func tappedContactButton() {
         self.contactButton.tintColor = .systemPink
         self.conversationButton.tintColor = .black
-        
+
         delegate?.typeScreenMessage(type: .contact)
     }
     
@@ -154,13 +154,8 @@ class NavView: UIView {
             
             self.searchBar.leadingAnchor.constraint(equalTo: self.navBar.leadingAnchor, constant: 30),
             self.searchBar.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
-            self.searchBar.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -20),
+            self.searchBar.trailingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: -20),
             self.searchBar.heightAnchor.constraint(equalToConstant: 55),
-            
-            self.stackView.trailingAnchor.constraint(equalTo: self.navBar.trailingAnchor, constant: -30),
-            self.stackView.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
-            self.stackView.widthAnchor.constraint(equalToConstant: 100),
-            self.stackView.heightAnchor.constraint(equalToConstant: 30),
             
             self.searchLabel.leadingAnchor.constraint(equalTo: self.searchBar.leadingAnchor, constant: 25),
             self.searchLabel.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
@@ -168,7 +163,13 @@ class NavView: UIView {
             self.searchButton.trailingAnchor.constraint(equalTo: self.searchBar.trailingAnchor, constant: -20),
             self.searchButton.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
             self.searchButton.widthAnchor.constraint(equalToConstant: 20),
-            self.searchButton.heightAnchor.constraint(equalToConstant: 20)
+            self.searchButton.heightAnchor.constraint(equalToConstant: 20),
+            
+            self.stackView.trailingAnchor.constraint(equalTo: self.navBar.trailingAnchor, constant: -30),
+            self.stackView.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
+            self.stackView.widthAnchor.constraint(equalToConstant: 100),
+            self.stackView.heightAnchor.constraint(equalToConstant: 30),
+            
         ])
     }
     
