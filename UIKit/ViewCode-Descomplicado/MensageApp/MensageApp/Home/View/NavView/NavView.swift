@@ -7,13 +7,8 @@
 
 import UIKit
 
-enum TypeConversationOrContact {
-    case conversation
-    case contact
-}
-
 protocol NavViewProtocol: AnyObject {
-    func typeScreenMessage(type: TypeConversationOrContact)
+    func typeSectionAccessing(type: TypeSectionAccessing)
 }
 
 class NavView: UIView {
@@ -107,14 +102,14 @@ class NavView: UIView {
         self.conversationButton.tintColor = .systemPink
         self.contactButton.tintColor = .black
         
-        delegate?.typeScreenMessage(type: .conversation)
+        delegate?.typeSectionAccessing(type: .conversation)
     }
     
     @objc func tappedContactButton() {
         self.contactButton.tintColor = .systemPink
         self.conversationButton.tintColor = .black
 
-        delegate?.typeScreenMessage(type: .contact)
+        delegate?.typeSectionAccessing(type: .contact)
     }
     
     override init(frame: CGRect) {

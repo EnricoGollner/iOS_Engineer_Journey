@@ -90,3 +90,6 @@ fastlane/test_output
 iOSInjectionProject/
 
 **/.DS_Store
+
+#Ignoring Firebase file
+**/GoogleService-Info.plist

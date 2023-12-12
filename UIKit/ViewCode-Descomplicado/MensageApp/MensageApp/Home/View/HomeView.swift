@@ -8,7 +8,8 @@
 import UIKit
 
 class HomeView: UIView {
-    lazy var navView: UIView = {
+    
+    lazy var navView: NavView = {
         let navView = NavView()
         navView.translatesAutoresizingMaskIntoConstraints = false
         return navView
@@ -28,7 +29,7 @@ class HomeView: UIView {
         return collectionView
     }()
     
-    private func delegateCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
+    public func delegateCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
         self.collectionView.delegate = delegate
         self.collectionView.dataSource = dataSource
     }

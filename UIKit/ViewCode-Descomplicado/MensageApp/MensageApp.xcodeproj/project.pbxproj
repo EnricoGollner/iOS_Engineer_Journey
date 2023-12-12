@@ -37,6 +37,7 @@
 		027DDD0E2B1EA7F5006F870A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027DDD0D2B1EA7F5006F870A /* RegisterViewController.swift */; };
 		027DDD142B1EA858006F870A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027DDD132B1EA858006F870A /* LoginView.swift */; };
 		027DDD162B1EA886006F870A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027DDD152B1EA886006F870A /* LoginViewController.swift */; };
+		02DBFE5F2B27EDB400AC94BE /* TypeSectionAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DBFE5E2B27EDB400AC94BE /* TypeSectionAccessing.swift */; };
 		159D77638B1B142A0EBD36DC /* Pods_MensageApp_MensageAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2FE86E912A41D980560F4CA /* Pods_MensageApp_MensageAppUITests.framework */; };
 		56963B5765CA239FF34AFDD7 /* Pods_MensageAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B779F9D35E9142ED7197A3B /* Pods_MensageAppTests.framework */; };
 		CCB6BC816E134004BE964C09 /* Pods_MensageApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFADD56F210B890BD0A1BFFF /* Pods_MensageApp.framework */; };
@@ -94,6 +95,7 @@
 		027DDD0D2B1EA7F5006F870A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		027DDD132B1EA858006F870A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		027DDD152B1EA886006F870A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		02DBFE5E2B27EDB400AC94BE /* TypeSectionAccessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSectionAccessing.swift; sourceTree = "<group>"; };
 		220061BDE5078C451C66386E /* Pods-MensageApp-MensageAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensageApp-MensageAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MensageApp-MensageAppUITests/Pods-MensageApp-MensageAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6535BCFF57030F0846838DAD /* Pods-MensageApp-MensageAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensageApp-MensageAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MensageApp-MensageAppUITests/Pods-MensageApp-MensageAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7B779F9D35E9142ED7197A3B /* Pods_MensageAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MensageAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,8 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				027DDD082B1EA7A0006F870A /* Register */,
-				027DDD052B1EA6AC006F870A /* Alert */,
-				027DDCF72B1E9ACD006F870A /* API - Repository */,
 				027DDCED2B1E9932006F870A /* Infrastructure */,
 				027DDCEC2B1E992A006F870A /* Login */,
 				027DDCEB2B1E9923006F870A /* Home */,
@@ -195,6 +195,9 @@
 		027DDCD82B1E98ED006F870A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				027DDCF72B1E9ACD006F870A /* API - Repository */,
+				027DDD052B1EA6AC006F870A /* Alert */,
+				02DBFE5D2B27ED9200AC94BE /* Enums */,
 				027DDCE02B1E990D006F870A /* Custom.swift */,
 				027DDCE52B1E990D006F870A /* Extension+String.swift */,
 				027DDCE22B1E990D006F870A /* Extension+UIButton.swift */,
@@ -367,6 +370,14 @@
 			);
 			name = ViewController;
 			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		02DBFE5D2B27ED9200AC94BE /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				02DBFE5E2B27EDB400AC94BE /* TypeSectionAccessing.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		B4E8061F4B004C304803E518 /* Pods */ = {
@@ -653,6 +664,7 @@
 				027DDD0E2B1EA7F5006F870A /* RegisterViewController.swift in Sources */,
 				027DDCEF2B1E9943006F870A /* Constants.swift in Sources */,
 				027DDD142B1EA858006F870A /* LoginView.swift in Sources */,
+				02DBFE5F2B27EDB400AC94BE /* TypeSectionAccessing.swift in Sources */,
 				027DDD0C2B1EA7CF006F870A /* Register.swift in Sources */,
 				027DDCFD2B1E9B04006F870A /* UserModel.swift in Sources */,
 			);
