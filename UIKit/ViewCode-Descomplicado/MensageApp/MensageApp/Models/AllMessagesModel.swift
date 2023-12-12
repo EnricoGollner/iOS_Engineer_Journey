@@ -50,6 +50,7 @@ class Contact {
     
     convenience init(id: String?, nome: String?) {
         self.init(dicionario: nil)
+        
         self.id = id
         self.nome = nome
     }
