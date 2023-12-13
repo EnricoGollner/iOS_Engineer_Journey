@@ -130,15 +130,41 @@ extension HomeViewController: ContactProtocol {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        if self.screenIsContact ?? false {
+            return self.contactList.count + 1
+        }
+        
+        return self.contactList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        
+        if self.screenIsContact ?? false {
+            if indexPath.row == self.contactList.count {
+                let addContactCell = collectionView.dequeueReusableCell(withReuseIdentifier: LastMessageCollectionViewCell.identifier, for: indexPath)
+                return addContactCell
+            } else {
+                let contactCell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageDetailCollectionViewCell.identifier, for: indexPath) as? MessageDetailCollectionViewCell
+                contactCell?.setUpViewContact(contact: self.contactList[indexPath.row])
+                return contactCell ?? UICollectionViewCell()
+            }
+        }
+        
+        // Messages cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageDetailCollectionViewCell.identifier, for: indexPath) as? MessageDetailCollectionViewCell
+        cell?.setUpViewConversation(self.conversationsList[indexPath.row])
+        return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        if self.screenIsContact ?? false {
+            if indexPath.row == self.contactList.count {
+                self.alert?.addContactAlert(completion: { emailUserToAdd in
+                    self.contact?.addContact(idUser: self.idUserLogged ?? "", email: emailUserToAdd, emailUserLoged: self.emailUsuarioLogado ?? "")
+                })
+            }
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

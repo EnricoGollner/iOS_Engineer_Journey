@@ -24,4 +24,23 @@ class Alert: NSObject {
         
         self.controller.present(alertController, animated: true)
     }
+    
+    func addContactAlert(completion:((_ value:String) -> Void)? = nil){
+        var _textField:UITextField?
+        
+        let alert = UIAlertController(title: "Adicionar Usuario", message: "Digite uma email Valido", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let add = UIAlertAction(title: "Adicionar", style: .default) { (acao) in
+            completion?(_textField?.text ?? "")
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(add)
+        alert.addTextField(configurationHandler: { (textField: UITextField) in
+            _textField = textField
+            textField.placeholder = "Email:"
+        })
+        
+        self.controller.present(alert, animated: true, completion: nil)
+    }
 }

@@ -29,7 +29,6 @@ class ContactController {
         // check if user exist in firestore
         let firestore = Firestore.firestore()
         firestore.collection("users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
-            
             //Save contact
             if let snapshot = snapshot {
                 if snapshot.count == 0 {  // user with that e-mail was not found.
@@ -41,6 +40,8 @@ class ContactController {
                     let dados = document.data()
                     self.saveContact(dadosContato: dados, idUser: idUser)
                 }
+            } else {
+                print(error?.localizedDescription)
             }
         }
     }
