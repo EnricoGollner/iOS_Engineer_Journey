@@ -284,7 +284,7 @@
 		027DDCF02B1E9978006F870A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				027DDCF22B1E9990006F870A /* NavView */,
+				027DDCF22B1E9990006F870A /* Components */,
 				027DDCF32B1E99A9006F870A /* HomeView.swift */,
 			);
 			path = View;
@@ -298,12 +298,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		027DDCF22B1E9990006F870A /* NavView */ = {
+		027DDCF22B1E9990006F870A /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				027DDCF52B1E99BD006F870A /* NavView.swift */,
 			);
-			path = NavView;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		027DDCF72B1E9ACD006F870A /* API - Repository */ = {

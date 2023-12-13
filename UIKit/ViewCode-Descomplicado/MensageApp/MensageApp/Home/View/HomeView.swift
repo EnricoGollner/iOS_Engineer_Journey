@@ -64,7 +64,7 @@ class HomeView: UIView {
             self.navView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.navView.heightAnchor.constraint(equalToConstant: 140),
             
-            self.collectionView.topAnchor.constraint(equalTo: self.navView.topAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.navView.bottomAnchor),
             self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),

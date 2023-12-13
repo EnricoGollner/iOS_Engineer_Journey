@@ -81,6 +81,7 @@ class NavView: UIView {
     lazy var conversationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = true
         button.setImage(UIImage(systemName: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .systemPink
         button.addTarget(self, action: #selector(self.tappedConversationButton), for: .touchUpInside)
@@ -91,6 +92,7 @@ class NavView: UIView {
     lazy var contactButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = true
         button.setImage(UIImage(named: "group")?.withRenderingMode(.alwaysTemplate), for: .normal)  // .withRenderingMode(.always template) - to allow us to edit image (such as add tint color)
         button.tintColor = .black
         button.addTarget(self, action: #selector(self.tappedContactButton), for: .touchUpInside)
@@ -122,10 +124,10 @@ class NavView: UIView {
     }
     
     private func setUpVisualElements() {
-        self.addSubview(navBackgroundView)
-        self.navBackgroundView.addSubview(navBar)
-        self.navBar.addSubview(searchBar)
-        self.navBar.addSubview(stackView)
+        self.addSubview(self.navBackgroundView)
+        self.navBackgroundView.addSubview(self.navBar)
+        self.navBar.addSubview(self.searchBar)
+        self.navBar.addSubview(self.stackView)
         self.searchBar.addSubview(self.searchLabel)
         self.searchBar.addSubview(self.searchButton)
         self.stackView.addArrangedSubview(self.conversationButton)
@@ -164,7 +166,6 @@ class NavView: UIView {
             self.stackView.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
             self.stackView.widthAnchor.constraint(equalToConstant: 100),
             self.stackView.heightAnchor.constraint(equalToConstant: 30),
-            
         ])
     }
     

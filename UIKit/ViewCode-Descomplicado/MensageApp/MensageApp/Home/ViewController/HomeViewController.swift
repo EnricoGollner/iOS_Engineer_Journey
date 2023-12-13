@@ -98,8 +98,8 @@ class HomeViewController: UIViewController {
     private func getContacts() {
         self.contactList.removeAll()
         self.db?.collection("users").document(self.idUserLogged ?? "").collection("contacts").getDocuments(completion: { snapshot, error in
-            if error != nil {
-                print("Error searching contacts!")
+            if let error {
+                self.alert?.getAlert(title: "Error searching contacts", message: error.localizedDescription)
                 return
             }
             
@@ -152,6 +152,7 @@ extension HomeViewController: NavViewProtocol {
         case .contact:
             self.screenIsContact = true
             self.getContacts()
+            self.conversationsListener?.remove()
         case .conversation:
             self.screenIsContact = false
             self.addListenerConversations()
