@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021D2DDF2B1EAC8D00AC6C20 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2DDE2B1EAC8D00AC6C20 /* Extension+UIViewController.swift */; };
+		0242B7D02B2939F1002E6EE9 /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242B7CF2B2939F1002E6EE9 /* ContactController.swift */; };
 		026E438B2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */; };
 		026E438D2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */; };
 		027DDCA62B1E9779006F870A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027DDCA52B1E9779006F870A /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		021D2DDE2B1EAC8D00AC6C20 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		0242B7CF2B2939F1002E6EE9 /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
 		026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		027DDCA22B1E9779006F870A /* MensageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MensageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0242B7CE2B2939D9002E6EE9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0242B7CF2B2939F1002E6EE9 /* ContactController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		026E43892B2801EC0013EEF9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +256,7 @@
 		027DDCEB2B1E9923006F870A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0242B7CE2B2939D9002E6EE9 /* Controller */,
 				026E43892B2801EC0013EEF9 /* Cell */,
 				027DDCF12B1E997C006F870A /* ViewController */,
 				027DDCF02B1E9978006F870A /* View */,
@@ -687,6 +698,7 @@
 				027DDCFF2B1E9B93006F870A /* UserBusiness.swift in Sources */,
 				027DDCF62B1E99BD006F870A /* NavView.swift in Sources */,
 				027DDD0E2B1EA7F5006F870A /* RegisterViewController.swift in Sources */,
+				0242B7D02B2939F1002E6EE9 /* ContactController.swift in Sources */,
 				027DDCEF2B1E9943006F870A /* Constants.swift in Sources */,
 				026E438B2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift in Sources */,
 				027DDD142B1EA858006F870A /* LoginView.swift in Sources */,

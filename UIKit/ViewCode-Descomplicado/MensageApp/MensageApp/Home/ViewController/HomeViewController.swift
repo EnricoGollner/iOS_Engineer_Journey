@@ -13,11 +13,16 @@ class HomeViewController: UIViewController {
     
     var auth: Auth?
     var db: Firestore?
-    var idUserLogado: String?
+    var idUserLogged: String?
     
-    var screenContact: Bool?
+    var screenIsContact: Bool?
     var emailUsuarioLogado: String?
     var alert: Alert?
+    
+    var contact: ContactController?
+    var contactList: [Contact] = []
+    var conversationsList: [Conversation] = []
+    var conversationsListener: ListenerRegistration?
     
     
     lazy var homeView: HomeView = {
@@ -37,6 +42,8 @@ class HomeViewController: UIViewController {
         self.configHomeView()
         self.configCollectionView()
         self.configAlert()
+        self.configIdentifierFirebase()
+        self.addListenerConversations()
     }
     
     private func configHomeView() {
@@ -50,6 +57,75 @@ class HomeViewController: UIViewController {
     private func configAlert() {
         self.alert = Alert(controller: self)
     }
+    
+    private func configIdentifierFirebase() {
+        self.auth = Auth.auth()
+        self.db = Firestore.firestore()
+        
+        // User id logged
+        if let currentUser = auth?.currentUser {
+            self.idUserLogged = currentUser.uid
+            self.emailUsuarioLogado = currentUser.email
+        }
+    }
+    
+    private func configContact() {
+        self.contact = ContactController()
+        self.contact?.delegate(delegate: self)
+    }
+    
+    private func addListenerConversations() {
+        if let idUserLogged = auth?.currentUser?.uid {
+            self.conversationsListener = db?.collection("conversations").document(idUserLogged).collection("last_conversations").addSnapshotListener({ querySnapshot, error in
+                
+                if let error {
+                    self.alert?.getAlert(title: "Error in listenner", message: error.localizedDescription)
+                    return
+                }
+                self.conversationsList.removeAll()
+                if let snapshot = querySnapshot {
+                    for document in snapshot.documents {
+                        let data = document.data()
+                        self.conversationsList.append(Conversation(dicionario: data))
+                        self.homeView.reloadCollectionView()
+                    }
+                }
+                
+            })
+        }
+    }
+    
+    private func getContacts() {
+        self.contactList.removeAll()
+        self.db?.collection("users").document(self.idUserLogged ?? "").collection("contacts").getDocuments(completion: { snapshot, error in
+            if error != nil {
+                print("Error searching contacts!")
+                return
+            }
+            
+            if let snapshot {
+                for document in snapshot.documents {
+                    let contactData = document.data()
+                    self.contactList.append(Contact(dicionario: contactData))
+                }
+            }
+            self.homeView.reloadCollectionView()
+        })
+    }
+}
+
+extension HomeViewController: ContactProtocol {
+    func alertStateError(title: String, message: String) {
+        self.alert?.getAlert(title: title, message: message)
+    }
+    
+    func successContato() {
+        self.alert?.getAlert(title: "Registered!", message: "User's registered successfuly!", completion: {
+            self.getContacts();
+        })
+    }
+    
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -74,9 +150,12 @@ extension HomeViewController: NavViewProtocol {
     func typeSectionAccessing(type: TypeSectionAccessing) {
         switch type {
         case .contact:
-            self.screenContact = true
+            self.screenIsContact = true
+            self.getContacts()
         case .conversation:
-            self.screenContact = false
+            self.screenIsContact = false
+            self.addListenerConversations()
+            self.homeView.reloadCollectionView()
         }
     }
 }

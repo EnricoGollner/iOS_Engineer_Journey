@@ -48,6 +48,8 @@ class LoginView: UIView {
         tf.autocapitalizationType = .none
         tf.textColor = .darkGray
         
+        tf.text = "enrico@dev.com"
+        
         return tf
     }()
     
@@ -61,6 +63,8 @@ class LoginView: UIView {
         tf.placeholder = "Digite sua senha"
         tf.isSecureTextEntry = true
         tf.textColor = .darkGray
+        
+        tf.text = "a12345"
         
         return tf
     }()

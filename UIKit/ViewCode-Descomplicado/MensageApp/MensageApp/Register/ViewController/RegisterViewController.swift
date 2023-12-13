@@ -64,7 +64,7 @@ extension RegisterViewController: RegisterViewProtocol {
         
         manager.register(email: email, password: password) { userModel in  // Success
             if let userId = userModel.userId {
-                self.firestore?.collection("usuarios").document(userId).setData([
+                self.firestore?.collection("users").document(userId).setData([
                     "id": userId,
                     "name": name,
                     "email": email,
