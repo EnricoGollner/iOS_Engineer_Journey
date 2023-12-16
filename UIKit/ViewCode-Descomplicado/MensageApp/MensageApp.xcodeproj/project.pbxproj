@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		021D2DDF2B1EAC8D00AC6C20 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2DDE2B1EAC8D00AC6C20 /* Extension+UIViewController.swift */; };
+		022AF2B52B2E2648004E9F62 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022AF2B42B2E2648004E9F62 /* ChatViewController.swift */; };
+		022AF2B92B2E26A8004E9F62 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022AF2B82B2E26A8004E9F62 /* ChatView.swift */; };
+		022AF2BC2B2E3195004E9F62 /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022AF2BB2B2E3195004E9F62 /* ChatNavigationView.swift */; };
 		0242B7D02B2939F1002E6EE9 /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242B7CF2B2939F1002E6EE9 /* ContactController.swift */; };
 		026E438B2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */; };
 		026E438D2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */; };
@@ -66,6 +69,9 @@
 
 /* Begin PBXFileReference section */
 		021D2DDE2B1EAC8D00AC6C20 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		022AF2B42B2E2648004E9F62 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		022AF2B82B2E26A8004E9F62 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		022AF2BB2B2E3195004E9F62 /* ChatNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
 		0242B7CF2B2939F1002E6EE9 /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
 		026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +149,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022AF2B32B2E262A004E9F62 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				022AF2B72B2E2689004E9F62 /* ViewController */,
+				022AF2B62B2E2684004E9F62 /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		022AF2B62B2E2684004E9F62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				022AF2BA2B2E28A7004E9F62 /* Components */,
+				022AF2B82B2E26A8004E9F62 /* ChatView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		022AF2B72B2E2689004E9F62 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				022AF2B42B2E2648004E9F62 /* ChatViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		022AF2BA2B2E28A7004E9F62 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				022AF2BB2B2E3195004E9F62 /* ChatNavigationView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		0242B7CE2B2939D9002E6EE9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +225,7 @@
 		027DDCA42B1E9779006F870A /* MensageApp */ = {
 			isa = PBXGroup;
 			children = (
+				022AF2B32B2E262A004E9F62 /* Chat */,
 				02DBFE602B27F3BC00AC94BE /* Models */,
 				027DDD082B1EA7A0006F870A /* Register */,
 				027DDCED2B1E9932006F870A /* Infrastructure */,
@@ -686,6 +727,7 @@
 				027DDCAA2B1E9779006F870A /* HomeViewController.swift in Sources */,
 				027DDD032B1E9BAC006F870A /* UserManager.swift in Sources */,
 				027DDD072B1EA6B9006F870A /* Alert.swift in Sources */,
+				022AF2B92B2E26A8004E9F62 /* ChatView.swift in Sources */,
 				027DDD162B1EA886006F870A /* LoginViewController.swift in Sources */,
 				027DDCEA2B1E990D006F870A /* Extension+String.swift in Sources */,
 				027DDCA62B1E9779006F870A /* AppDelegate.swift in Sources */,
@@ -704,8 +746,10 @@
 				027DDD142B1EA858006F870A /* LoginView.swift in Sources */,
 				02DBFE5F2B27EDB400AC94BE /* TypeSectionAccessing.swift in Sources */,
 				027DDD0C2B1EA7CF006F870A /* Register.swift in Sources */,
+				022AF2B52B2E2648004E9F62 /* ChatViewController.swift in Sources */,
 				027DDCFD2B1E9B04006F870A /* UserModel.swift in Sources */,
 				02DBFE622B27F3CF00AC94BE /* AllMessagesModel.swift in Sources */,
+				022AF2BC2B2E3195004E9F62 /* ChatNavigationView.swift in Sources */,
 				026E438D2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

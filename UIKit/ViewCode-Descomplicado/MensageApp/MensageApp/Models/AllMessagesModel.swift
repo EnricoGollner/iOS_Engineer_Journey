@@ -18,40 +18,41 @@ class Message {
 }
 
 class Conversation {
-    var nome: String?
+    var name: String?
     var lastMessage: String?
     var idDestinatario: String?
     
     init(dicionario: [String: Any]) {
-        self.nome = dicionario["texto"] as? String
-        self.lastMessage = dicionario["lastMessage"] as? String
         self.idDestinatario = dicionario["idDestinatario"] as? String
+        self.name = dicionario["texto"] as? String
+        self.lastMessage = dicionario["lastMessage"] as? String
+        
     }
 }
 
 class User {
-    var nome: String?
+    var name: String?
     var email: String?
     
     init(dicionario: [String: Any]) {
-        self.nome = dicionario["nome"] as? String
+        self.name = dicionario["name"] as? String
         self.email = dicionario["email"] as? String
     }
 }
 
 class Contact {
     var id: String?
-    var nome: String?
+    var name: String?
     
     init(dicionario: [String: Any]?) {
         self.id = dicionario?["id"] as? String
-        self.nome = dicionario?["nome"] as? String
+        self.name = dicionario?["name"] as? String
     }
     
-    convenience init(id: String?, nome: String?) {
+    convenience init(id: String?, name: String?) {
         self.init(dicionario: nil)
         
         self.id = id
-        self.nome = nome
+        self.name = name
     }
 }

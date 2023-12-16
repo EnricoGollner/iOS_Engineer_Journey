@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
         self.configCollectionView()
         self.configAlert()
         self.configIdentifierFirebase()
-        self.configContact()
+        self.configContactController()
         self.addListenerConversations()
     }
     
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func configContact() {
+    private func configContactController() {
         self.contact = ContactController()
         self.contact?.delegate(delegate: self)
     }
@@ -99,6 +99,7 @@ class HomeViewController: UIViewController {
     
     private func getContacts() {
         self.contactList.removeAll()
+        
         self.db?.collection("users").document(self.idUserLogged ?? "").collection("contacts").getDocuments(completion: { snapshot, error in
             if let error {
                 self.alert?.getAlert(title: "Error searching contacts", message: error.localizedDescription)
@@ -111,6 +112,7 @@ class HomeViewController: UIViewController {
                     self.contactList.append(Contact(dicionario: contactData))
                 }
             }
+            
             self.homeView.reloadCollectionView()
         })
     }
@@ -151,7 +153,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return contactCell ?? UICollectionViewCell()
             }
         }
-        
+    
         // Messages cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageDetailCollectionViewCell.identifier, for: indexPath) as? MessageDetailCollectionViewCell
         cell?.setUpViewConversation(self.conversationsList[indexPath.row])

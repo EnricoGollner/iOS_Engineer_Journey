@@ -20,25 +20,26 @@ class ContactController {
         self.delegate = delegate
     }
     
+    private let firestore: Firestore = Firestore.firestore()
+    
     func addContact(idUser: String, email: String, emailUserLoged: String) {
         if email == emailUserLoged {
-            self.delegate?.alertStateError(title: "You had added your own e-mail", message: "Add a new e-mail!")
+            self.delegate?.alertStateError(title: "Add a new e-mail!", message: "You had added your own e-mail")
             return
         }
         
         // check if user exist in firestore
-        let firestore = Firestore.firestore()
         firestore.collection("users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
             //Save contact
-            if let snapshot = snapshot {
+            if let snapshot {
                 if snapshot.count == 0 {  // user with that e-mail was not found.
-                    self.delegate?.alertStateError(title: "User is not registered", message: "Check the e-mail and try it again!")
+                    self.delegate?.alertStateError(title: "User not found", message: "Check the e-mail and try again!")
                     return
                 }
                 
                 for document in snapshot.documents {
                     let dados = document.data()
-                    self.saveContact(dadosContato: dados, idUser: idUser)
+                    self.saveContact(idUser: idUser, dadosContato: dados)
                 }
             } else {
                 print(error?.localizedDescription ?? "Erro")
@@ -46,9 +47,8 @@ class ContactController {
         }
     }
     
-    func saveContact(dadosContato: Dictionary<String, Any>, idUser: String) {
+    func saveContact(idUser: String, dadosContato: Dictionary<String, Any>) {
         let contact: Contact = Contact(dicionario: dadosContato)
-        let firestore: Firestore = Firestore.firestore()
         
         firestore.collection("users").document(idUser).collection("contacts").document(contact.id ?? "").setData(dadosContato) { error in
             if error == nil {

@@ -63,11 +63,11 @@ class MessageDetailCollectionViewCell: UICollectionViewCell {
     }
     
     public func setUpViewContact(contact: Contact) {
-        self.setUserName(userName: contact.nome ?? "")
+        self.setUserName(userName: contact.name ?? "")
     }
     
     public func setUpViewConversation(_ conversation: Conversation) {
-        let attributedText = NSMutableAttributedString(string: conversation.nome ?? "", attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 16) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        let attributedText = NSMutableAttributedString(string: conversation.name ?? "", attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 16) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         attributedText.append(NSAttributedString(string: "\n\(conversation.lastMessage ?? "")", attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 14) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         
