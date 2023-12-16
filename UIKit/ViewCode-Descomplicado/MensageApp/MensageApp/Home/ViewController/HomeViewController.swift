@@ -36,13 +36,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissKeyboard()
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = CustomColor.appLight
+        self.dismissKeyboard()
         self.configHomeView()
         self.configCollectionView()
         self.configAlert()
         self.configIdentifierFirebase()
+        self.configContact()
         self.addListenerConversations()
     }
     
@@ -82,6 +83,7 @@ class HomeViewController: UIViewController {
                     self.alert?.getAlert(title: "Error in listenner", message: error.localizedDescription)
                     return
                 }
+                
                 self.conversationsList.removeAll()
                 if let snapshot = querySnapshot {
                     for document in snapshot.documents {

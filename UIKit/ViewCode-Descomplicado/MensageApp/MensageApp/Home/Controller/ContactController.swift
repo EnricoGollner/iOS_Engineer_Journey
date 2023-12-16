@@ -41,7 +41,7 @@ class ContactController {
                     self.saveContact(dadosContato: dados, idUser: idUser)
                 }
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "Erro")
             }
         }
     }
