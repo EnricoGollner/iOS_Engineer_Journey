@@ -78,6 +78,7 @@ class MessageDetailCollectionViewCell: UICollectionViewCell {
         let attributedText = NSMutableAttributedString(string: userName, attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 16) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         self.userNameLabel.attributedText = attributedText
+//        self.userNameLabel.text = userName
     }
     
 }

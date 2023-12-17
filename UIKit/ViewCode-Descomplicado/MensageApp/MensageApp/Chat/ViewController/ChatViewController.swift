@@ -10,6 +10,7 @@ import UIKit
 class ChatViewController: UIViewController {
     
     lazy var chatView: ChatView = {
+        let chatView = ChatView()
         return ChatView(frame: .zero)
     }()
     
@@ -19,8 +20,7 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        chatView.configNavView(controller: self)
     }
     
     @objc public func tappedBackButton() {

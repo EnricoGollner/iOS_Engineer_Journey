@@ -167,6 +167,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self.contact?.addContact(idUser: self.idUserLogged ?? "", email: emailUserToAdd, emailUserLoged: self.emailUsuarioLogado ?? "")
                 })
             }
+        } else {
+            let vc: ChatViewController = ChatViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }
