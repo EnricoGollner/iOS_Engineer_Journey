@@ -56,7 +56,7 @@ class ChatView: UIView {
         button.layer.shadowRadius = 10
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
         button.layer.shadowOpacity = 0.3
-        button.addTarget(self, action: #selector(tappedSend), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedSendMessage), for: .touchUpInside)
         button.setImage(UIImage(named: "send"), for: .normal)
         
         return button
@@ -76,6 +76,10 @@ class ChatView: UIView {
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        
+        table.register(IncomingTextMessageTableViewCell.self, forCellReuseIdentifier: IncomingTextMessageTableViewCell.identifier)
+        table.register(OutgoingTextMessageTableViewCell.self, forCellReuseIdentifier: OutgoingTextMessageTableViewCell.identifier)
+        
         table.transform = CGAffineTransform(scaleX: 1, y: -1)
         table.backgroundColor = .clear
         table.separatorStyle = .none
@@ -190,10 +194,11 @@ class ChatView: UIView {
         }
     }
     
-    @objc func tappedSend() {
+    @objc func tappedSendMessage() {
         self.sendButton.touchAnimations(s: self.sendButton)
         self.startPushMessage()
         self.delegate?.actionPushMessage()
+        self.playSound()
     }
     
     public func startPushMessage() {
@@ -201,6 +206,22 @@ class ChatView: UIView {
         self.sendButton.isEnabled = false
         self.sendButton.layer.opacity = 0.4
         self.sendButton.transform = .init(scaleX: 0.8, y: 0.8)
+    }
+    
+    public func playSound() {
+        guard let url = Bundle.main.url(forResource: "send", withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            self.player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            
+            guard let player = self.player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     

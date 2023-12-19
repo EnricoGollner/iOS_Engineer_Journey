@@ -12,6 +12,8 @@
 		022AF2B92B2E26A8004E9F62 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022AF2B82B2E26A8004E9F62 /* ChatView.swift */; };
 		022AF2BC2B2E3195004E9F62 /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022AF2BB2B2E3195004E9F62 /* ChatNavigationView.swift */; };
 		0242B7D02B2939F1002E6EE9 /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242B7CF2B2939F1002E6EE9 /* ContactController.swift */; };
+		0262B5FB2B32450500DE165B /* IncomingTextMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262B5FA2B32450500DE165B /* IncomingTextMessageTableViewCell.swift */; };
+		0262B5FD2B32486700DE165B /* OutgoingTextMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262B5FC2B32486700DE165B /* OutgoingTextMessageTableViewCell.swift */; };
 		026E438B2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */; };
 		026E438D2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */; };
 		027DDCA62B1E9779006F870A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027DDCA52B1E9779006F870A /* AppDelegate.swift */; };
@@ -73,6 +75,8 @@
 		022AF2B82B2E26A8004E9F62 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		022AF2BB2B2E3195004E9F62 /* ChatNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
 		0242B7CF2B2939F1002E6EE9 /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
+		0262B5FA2B32450500DE165B /* IncomingTextMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingTextMessageTableViewCell.swift; sourceTree = "<group>"; };
+		0262B5FC2B32486700DE165B /* OutgoingTextMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingTextMessageTableViewCell.swift; sourceTree = "<group>"; };
 		026E438A2B28020A0013EEF9 /* LastMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		026E438C2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		027DDCA22B1E9779006F870A /* MensageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MensageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +165,7 @@
 		022AF2B62B2E2684004E9F62 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0262B5F92B3244D600DE165B /* Cell */,
 				022AF2BA2B2E28A7004E9F62 /* Components */,
 				022AF2B82B2E26A8004E9F62 /* ChatView.swift */,
 			);
@@ -189,6 +194,15 @@
 				0242B7CF2B2939F1002E6EE9 /* ContactController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0262B5F92B3244D600DE165B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0262B5FA2B32450500DE165B /* IncomingTextMessageTableViewCell.swift */,
+				0262B5FC2B32486700DE165B /* OutgoingTextMessageTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		026E43892B2801EC0013EEF9 /* Cell */ = {
@@ -723,6 +737,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0262B5FD2B32486700DE165B /* OutgoingTextMessageTableViewCell.swift in Sources */,
 				027DDCF42B1E99A9006F870A /* HomeView.swift in Sources */,
 				027DDCAA2B1E9779006F870A /* HomeViewController.swift in Sources */,
 				027DDD032B1E9BAC006F870A /* UserManager.swift in Sources */,
@@ -750,6 +765,7 @@
 				027DDCFD2B1E9B04006F870A /* UserModel.swift in Sources */,
 				02DBFE622B27F3CF00AC94BE /* AllMessagesModel.swift in Sources */,
 				022AF2BC2B2E3195004E9F62 /* ChatNavigationView.swift in Sources */,
+				0262B5FB2B32450500DE165B /* IncomingTextMessageTableViewCell.swift in Sources */,
 				026E438D2B28052F0013EEF9 /* MessageDetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
