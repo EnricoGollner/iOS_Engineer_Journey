@@ -8,7 +8,18 @@
 import AVFoundation
 import UIKit
 
+protocol ChatViewProtocol: AnyObject {
+    func actionPushMessage()
+}
+
 class ChatView: UIView {
+    
+    
+    weak private var delegate: ChatViewProtocol?
+    
+    public func delegate(delegate: ChatViewProtocol) {
+        self.delegate = delegate
+    }
     
     var bottomConstraint: NSLayoutConstraint?
     var player: AVAudioPlayer?
@@ -22,7 +33,8 @@ class ChatView: UIView {
     
     lazy var messageInputView: UIView = {
         let view = UIView()
-        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
         return view
     }()
     
@@ -53,6 +65,7 @@ class ChatView: UIView {
     lazy var inputMessageTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         textField.placeholder = "Digite aqui"
         textField.font = UIFont(name: CustomFont.poppinsSemiBold, size: 14)
         textField.textColor = .darkGray
@@ -61,8 +74,9 @@ class ChatView: UIView {
     }()
     
     lazy var tableView: UITableView = {
-       let table = UITableView()
-        table.transform = CGAffineTransform(scaleX: 1, y: 1)
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.transform = CGAffineTransform(scaleX: 1, y: -1)
         table.backgroundColor = .clear
         table.separatorStyle = .none
         table.tableFooterView = UIView()
@@ -89,11 +103,11 @@ class ChatView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
+        self.setUpVisualElements()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyboardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        self.setUpVisualElements()
         
         self.inputMessageTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: UIControl.Event.editingChanged)
         
@@ -130,7 +144,7 @@ class ChatView: UIView {
             self.navView.heightAnchor.constraint(equalToConstant: 140),
             
             self.tableView.topAnchor.constraint(equalTo: self.navView.bottomAnchor),
-            self.tableView.leadingAnchor.constraint(equalTo: self.leftAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.messageInputView.topAnchor),
             
@@ -139,19 +153,20 @@ class ChatView: UIView {
             self.messageInputView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.messageInputView.heightAnchor.constraint(equalToConstant: 80),
             
-            self.messageBar.leadingAnchor.constraint(equalTo: self.messageInputView.leadingAnchor, constant: 20),
-            self.messageBar.trailingAnchor.constraint(equalTo: self.messageInputView.trailingAnchor, constant: -20),
+            self.messageBar.leadingAnchor.constraint(equalTo: self.messageInputView.leadingAnchor,constant: 20),
+            self.messageBar.trailingAnchor.constraint(equalTo: self.messageInputView.trailingAnchor,constant: -20),
+            self.messageBar.heightAnchor.constraint(equalToConstant: 55),
             self.messageBar.centerYAnchor.constraint(equalTo: self.messageInputView.centerYAnchor),
             
             self.sendButton.trailingAnchor.constraint(equalTo: self.messageBar.trailingAnchor, constant: -15),
             self.sendButton.heightAnchor.constraint(equalToConstant: 55),
             self.sendButton.widthAnchor.constraint(equalToConstant: 55),
-            self.sendButton.bottomAnchor.constraint(equalTo: self.messageInputView.bottomAnchor, constant: -10),
+            self.sendButton.bottomAnchor.constraint(equalTo: self.messageBar.bottomAnchor, constant: -10),
             
-            self.inputMessageTextField.leadingAnchor.constraint(equalTo: self.messageBar.leadingAnchor, constant: 20),
-            self.inputMessageTextField.trailingAnchor.constraint(equalTo: self.messageBar.trailingAnchor, constant: -5),
+            self.inputMessageTextField.leadingAnchor.constraint(equalTo: self.messageBar.leadingAnchor,constant: 20),
+            self.inputMessageTextField.trailingAnchor.constraint(equalTo: self.sendButton.leadingAnchor,constant: -5),
             self.inputMessageTextField.heightAnchor.constraint(equalToConstant: 45),
-            self.inputMessageTextField.centerYAnchor.constraint(equalTo: self.messageBar.centerYAnchor),
+            self.inputMessageTextField.centerYAnchor.constraint(equalTo: self.messageBar.centerYAnchor)
         ])
     }
     
@@ -177,7 +192,18 @@ class ChatView: UIView {
     
     @objc func tappedSend() {
         self.sendButton.touchAnimations(s: self.sendButton)
+        self.startPushMessage()
+        self.delegate?.actionPushMessage()
     }
+    
+    public func startPushMessage() {
+        self.inputMessageTextField.text = ""
+        self.sendButton.isEnabled = false
+        self.sendButton.layer.opacity = 0.4
+        self.sendButton.transform = .init(scaleX: 0.8, y: 0.8)
+    }
+    
+    
 }
 
 extension ChatView: UITextFieldDelegate {

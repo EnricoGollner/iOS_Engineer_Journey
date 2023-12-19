@@ -9,9 +9,11 @@ import UIKit
 
 class ChatViewController: UIViewController {
     
+    var listaMensagens: [Message] = []
+    
     lazy var chatView: ChatView = {
-        let chatView = ChatView()
-        return ChatView(frame: .zero)
+        let chatView = ChatView(frame: .zero)
+        return chatView
     }()
     
     override func loadView() {

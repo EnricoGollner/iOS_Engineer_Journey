@@ -17,7 +17,7 @@ class MessageDetailCollectionViewCell: UICollectionViewCell {
         imgView.contentMode = .scaleAspectFit
         imgView.clipsToBounds = true
         imgView.layer.cornerRadius = 26
-        imgView.image = UIImage(named: "imagem-perfil")
+        imgView.image = UIImage(named: "profile-image")
         
         return imgView
     }()
@@ -71,14 +71,15 @@ class MessageDetailCollectionViewCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: "\n\(conversation.lastMessage ?? "")", attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 14) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         
-        self.userNameLabel.attributedText = attributedText
+//        self.userNameLabel.attributedText = attributedText
+        self.userNameLabel.text = conversation.lastMessage
     }
     
     public func setUserName(userName: String) {
         let attributedText = NSMutableAttributedString(string: userName, attributes: [NSAttributedString.Key.font: UIFont(name: CustomFont.poppinsMedium, size: 16) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
-        self.userNameLabel.attributedText = attributedText
-//        self.userNameLabel.text = userName
+//        self.userNameLabel.attributedText = attributedText
+        self.userNameLabel.text = userName
     }
     
 }

@@ -78,8 +78,8 @@ class ChatNavigationView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = 35
-        image.image = UIImage(named: "image-perfil")
+        image.layer.cornerRadius = 26
+        image.image = UIImage(named: "profile-image")
         
         return image
     }()
@@ -119,7 +119,7 @@ class ChatNavigationView: UIView {
             self.navBar.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             self.backButton.leadingAnchor.constraint(equalTo: self.navBar.leadingAnchor, constant: 30),
-            self.backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.backButton.centerYAnchor.constraint(equalTo: self.navBar.centerYAnchor),
             self.backButton.heightAnchor.constraint(equalToConstant: 30),
             self.backButton.widthAnchor.constraint(equalToConstant: 30),
             
@@ -135,9 +135,6 @@ class ChatNavigationView: UIView {
             
             self.searchLabel.leadingAnchor.constraint(equalTo: self.searchBar.leadingAnchor, constant: 25),
             self.searchLabel.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
-            
-            self.searchButton.trailingAnchor.constraint(equalTo: self.searchBar.trailingAnchor, constant: -20),
-            self.searchButton.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
             
             self.searchButton.trailingAnchor.constraint(equalTo: self.searchBar.trailingAnchor, constant: -20),
             self.searchButton.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
