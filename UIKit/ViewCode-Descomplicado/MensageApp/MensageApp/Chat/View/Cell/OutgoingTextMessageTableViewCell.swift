@@ -14,6 +14,7 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
     lazy var myMessageView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = CustomColor.appPurple
         view.layer.cornerRadius = 20
         view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -45,7 +46,7 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
     private func setUpVisualElements() {
         self.addSubview(myMessageView)
         self.myMessageView.addSubview(messageLabel)
-        self.isSelected = false  // removing selection of the cell
+        self.isSelected = false
         
         self.configConstraints()
     }
