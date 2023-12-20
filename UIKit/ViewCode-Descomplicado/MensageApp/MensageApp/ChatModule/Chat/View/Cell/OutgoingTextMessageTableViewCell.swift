@@ -14,7 +14,6 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
     lazy var myMessageView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = CustomColor.appPurple
         view.layer.cornerRadius = 20
         view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -25,9 +24,8 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-
         label.numberOfLines = 0  // knows the number it needs based in the text
-        label.textColor = .darkGray
+        label.textColor = .white
         label.font = UIFont(name: CustomFont.poppinsBold, size: 14)
         
         return label

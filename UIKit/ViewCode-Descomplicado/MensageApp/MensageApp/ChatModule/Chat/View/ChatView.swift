@@ -196,12 +196,11 @@ class ChatView: UIView {
         self.sendButton.touchAnimations(s: self.sendButton)
         self.startPushMessage()
         self.delegate?.actionPushMessage()
-        print(self.delegate.self ?? "")
+        self.inputMessageTextField.text = ""
         self.playSound()
     }
     
     public func startPushMessage() {
-        self.inputMessageTextField.text = ""
         self.sendButton.isEnabled = false
         self.sendButton.layer.opacity = 0.4
         self.sendButton.transform = .init(scaleX: 0.8, y: 0.8)

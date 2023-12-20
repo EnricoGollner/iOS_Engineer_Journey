@@ -168,13 +168,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 })
             } else {
                 let vc: ChatViewController = ChatViewController()
-                let data = self.conversationsList[indexPath.row]
-                let contact = Contact(id: data.idRecepient ?? "", name: data.name ?? "")
-                vc.contact = contact
+                vc.contact = self.contactList[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         } else {
-            
+            let vc: ChatViewController = ChatViewController()
+            let data = self.conversationsList[indexPath.row]
+            let contact = Contact(id: data.idRecepient ?? "", name: data.name ?? "")
+            vc.contact = contact
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

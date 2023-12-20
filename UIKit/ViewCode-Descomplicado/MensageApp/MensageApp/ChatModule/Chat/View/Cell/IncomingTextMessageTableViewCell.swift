@@ -14,10 +14,9 @@ class IncomingTextMessageTableViewCell: UITableViewCell {
     lazy var contactMessage: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(white: 0, alpha: 0.06)
         view.layer.cornerRadius = 20
-        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         return view
     }()
@@ -25,9 +24,8 @@ class IncomingTextMessageTableViewCell: UITableViewCell {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-
         label.numberOfLines = 0  // knows the number it needs based in the text
-        label.textColor = .darkGray
+        label.textColor = .white
         label.font = UIFont(name: CustomFont.poppinsMedium, size: 14)
         
         return label
